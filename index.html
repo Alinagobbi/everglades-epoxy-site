@@ -289,7 +289,7 @@ footer.sf{margin-top:clamp(60px,8vw,120px);padding:56px 0 calc(34px + env(safe-a
   .ls h2 br{display:none}.ls h2{font-size:28px}
   .ls .txt{gap:12px;padding:0 0 calc(86px + env(safe-area-inset-bottom,0px))}
   .stage{height:29vh!important;--s:.4!important;overflow:hidden}
-  @media(max-height:700px){.stage{height:23vh!important;--s:.3!important}.ls{padding-top:60px;grid-template-rows:auto auto}.ls h2{display:none}.lays li{padding:8px 0}.ls .txt{padding-top:10px}}
+  @media(max-height:700px){.stage{height:30vh!important;--s:.3!important}.ls{padding-top:60px;grid-template-rows:auto auto}.ls h2{display:none}.lays li{padding:8px 0}.ls .txt{padding-top:10px}}
 }
 
 /* finale */
@@ -865,7 +865,7 @@ function updateLayers(){
   });
   var show=p>.02?active:LAYERS.length-1;
   liEls.forEach(function(li,i){li.classList.toggle('on',i===show);});
-  var s=window.innerWidth<860?.62:Math.min(1,window.innerWidth/1100+.15);
+  var s=window.innerWidth<860?(window.innerHeight<700?.3:.44):Math.min(1,window.innerWidth/1100+.15);
   world.style.setProperty('--s',s.toFixed(2));
 }
 window.addEventListener('scroll',updateLayers,{passive:true});window.addEventListener('resize',updateLayers);

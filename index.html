@@ -398,6 +398,14 @@ html.ldg{overflow:hidden}
 .areabg .area{background:rgba(10,10,10,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .design .fx,.design .panel>.step,.design .panel>.est{opacity:1!important;transform:none!important;transition:none!important}
 #reviews,#areas,#faq{padding-block:clamp(80px,11vw,150px)}
+
+.why{list-style:none;margin:0;padding:0;border-top:2px dashed #4a4944}
+.why li{display:grid;grid-template-columns:110px minmax(0,1fr) minmax(0,1.1fr);gap:clamp(12px,3vw,40px);align-items:baseline;padding:30px 0;border-bottom:1px dashed #4a4944}
+.why li b{font-family:var(--f-display);font-weight:400;font-size:64px;line-height:1;color:var(--lime)}
+.why li h3{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3.2vw,40px);line-height:1.02;text-transform:uppercase;letter-spacing:.01em}
+.why li p{font-size:16px;line-height:1.65;color:var(--muted);max-width:52ch}
+.why-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+@media(max-width:760px){.why li{grid-template-columns:62px minmax(0,1fr);row-gap:8px;padding:24px 0}.why li b{font-size:44px;grid-row:span 2}.why li p{grid-column:2}.why-cta .btn{flex:1;text-align:center}}
 </style>
 
 <div id="ld" role="status" aria-label="Loading"><img src="logo.png" alt="Everglades Epoxy Coatings"><div class="ln"><b></b></div></div>
@@ -425,13 +433,9 @@ html.ldg{overflow:hidden}
 
 <section class="pad" id="florida">
   <div class="wrap">
-    <div class="sec-head"><p class="label lime">BUILT FOR FLORIDA</p><h2 class="big">Florida floors play <br>by different rules.</h2><p class="lede">Heat, humidity and moisture rising through the slab are the main reasons coatings fail down here. We plan for all of it before a single drop goes on.</p></div>
-    <div class="cards">
-      <article class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.5 6 7.6 6 10.8A6 6 0 0 1 6 13.8C6 10.6 8.5 7.500 12 3z"/></svg><h3>Moisture from below</h3><p>Slabs here give off moisture all year. We test the concrete first and use a moisture-blocking primer when readings run high, so the coating does not blister or peel.</p></article>
-      <article class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/></svg><h3>Heat and strong sun</h3><p>UV can yellow standard epoxy, especially near the garage door. A UV-stable topcoat keeps the color true and the surface hard.</p></article>
-      <article class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9c2.500-3 5-3 7.500 0s5 3 7.500 0 3-2 5-1M2 15c2.500-3 5-3 7.500 0s5 3 7.500 0 3-2 5-1"/></svg><h3>Humid, salty air</h3><p>Coatings need the right conditions to bond. We watch temperature and dew point on the day of the job, not just the calendar.</p></article>
-      <article class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v5M12 15v5M4 12h5M15 12h5"/></svg><h3>Hot tires</h3><p>A fully cured, hard topcoat resists hot tire pickup, so your garage floor looks the same after a long summer of driving.</p></article>
-    </div>
+    <div class="sec-head"><p class="label lime">WHY EVERGLADES</p><h2 class="big">A floor you will never <br>think twice about.</h2><p class="lede">Anyone can pour epoxy. What you are really buying is the prep, the right products for Florida and a crew that shows up and finishes the job right.</p></div>
+    <ol class="why"><li><b>01</b><h3>Built for Florida, not just installed here</h3><p>UV-stable topcoats and moisture-blocking primers keep your floor clear, hard and bonded through the sun, humidity and hot tires.</p></li><li><b>02</b><h3>Prep that decides how long it lasts</h3><p>We diamond grind and repair every slab first. Most floors fail because prep was rushed, so we never rush it.</p></li><li><b>03</b><h3>Free visit, price in writing</h3><p>We come to you, measure and test the concrete, then send a clear written quote before any work starts. No surprises.</p></li><li><b>04</b><h3>A crew that stands behind the work</h3><p>Fully insured, and every floor comes with a written warranty. If something is not right, we come back and fix it.</p></li></ol>
+    <div class="why-cta"><a class="btn" href="#design">Design your floor</a><a class="btn ghost" href="#design">Get a free quote</a></div>
   </div>
 </section>
 
@@ -884,7 +888,7 @@ Array.prototype.forEach.call(document.querySelectorAll('[data-ba]'),function(f,i
 });
 (function(){
   if(reduce)return;
-  var sel='.sec-head>*,.cards .card,.steps li,.gl,.ba,.rv-head>*,.rv,.area,.faq details,.finale>*,footer.sf .sf-grid>div';
+  var sel='.sec-head>*,.why li,.cards .card,.steps li,.gl,.ba,.rv-head>*,.rv,.area,.faq details,.finale>*,footer.sf .sf-grid>div';
   var els=document.querySelectorAll(sel);
   var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   Array.prototype.forEach.call(els,function(el){

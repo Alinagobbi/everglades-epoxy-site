@@ -454,7 +454,6 @@ html.ldg{overflow:hidden}
         <div class="step size">
           <p class="label"><b>3</b> Size</p>
           <div class="row"><input id="sqftRange" type="range" min="100" max="2000" step="10" value="440" aria-label="Square feet"><div class="num"><input id="sqft" type="number" min="50" max="10000" step="10" value="440" inputmode="numeric" aria-label="Square feet exact"><span>SQ FT</span></div></div>
-          <div class="chips" id="chips"></div>
         </div>
         <div class="step opt" id="cond"><p class="label"><b>4</b> Floor condition</p></div>
         <div class="step opt" id="adds"><p class="label"><b>5</b> Extras</p></div>
@@ -763,7 +762,7 @@ sqR.addEventListener('input',function(){setSqft(+sqR.value);});
 sqN.addEventListener('input',function(){var v=+sqN.value;if(v>=50)setSqft(v);});
 sqN.addEventListener('blur',function(){setSqft(+sqN.value);});
 var chips=document.getElementById('chips');
-function buildChips(){chips.innerHTML='';PRESETS[S.type].forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0]+' \u00b7 '+p[1].toLocaleString('en-US');b.addEventListener('click',function(){setSqft(p[1]);});chips.appendChild(b);});}
+function buildChips(){if(!chips)return;chips.innerHTML='';PRESETS[S.type].forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0]+' \u00b7 '+p[1].toLocaleString('en-US');b.addEventListener('click',function(){setSqft(p[1]);});chips.appendChild(b);});}
 function setType(t){
   S.type=t;
   Array.prototype.forEach.call(document.querySelectorAll('#seg button'),function(x){x.setAttribute('aria-pressed',x.dataset.t===t);});

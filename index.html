@@ -1,10 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050505">
-<meta name="description" content="Glades Epoxy Co. Custom epoxy floors for homes and businesses across South Florida. Portfolio demo website.">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="claude:viewport-fit-sides" content="cover">
 <title>Glades Epoxy Co.</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Montserrat:wght@500;600;800&display=swap">
 <style>
@@ -418,9 +412,29 @@ html.ldg{overflow:hidden}
 @media(max-width:560px){.sec-head h2.big,.rv-head h2.big{line-height:1.08!important}}
 #layers{margin-bottom:clamp(80px,10vw,160px)}
 #work{padding-top:clamp(160px,20vw,280px)}
-</style>
-</head>
-<body>
+
+.ldots{display:none}
+@keyframes rollup{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@media(max-width:860px){
+  .ls{padding-top:66px}
+  .stage{height:40vh!important;overflow:hidden;flex:none}
+  @media(min-height:780px){.stage{height:46vh!important}}
+  .ls .txt{gap:10px;padding:6px 0 calc(92px + env(safe-area-inset-bottom,0px))}
+  .ls h2{display:none}
+  .ls .label{margin:0}
+  .ldots{display:flex;gap:8px;margin:2px 0 4px}
+  .ldots button{appearance:none;border:0;padding:0;height:5px;flex:1;background:#34332e;border-radius:3px;transition:background .4s}
+  .ldots button.on{background:var(--lime);box-shadow:0 0 10px rgba(168,232,0,.6)}
+  .lays li{display:none;padding:0;border:0;grid-template-columns:54px 1fr;gap:14px;align-items:start}
+  .lays li.on{display:grid;animation:rollup .55s cubic-bezier(.2,.7,.2,1) both}
+  .lays{border-top:0}
+  .lays li b{font-family:var(--f-display);font-weight:400;font-size:54px;line-height:1;color:var(--lime)}
+  .lays li h3{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.05;letter-spacing:.02em;text-transform:uppercase;color:var(--bone)}
+  .lays li p{font-size:15px;line-height:1.55;margin-top:8px;color:var(--muted)}
+  @media(max-height:700px){.stage{height:34vh!important;--s:.34!important}.lays li b{font-size:42px}.lays li h3{font-size:22px}.lays li p{font-size:14px}.ls{padding-top:60px}}
+}
+@media(prefers-reduced-motion:reduce){.lays li.on{animation:none}}
+</style></head><body>
 
 <div id="ld" role="status" aria-label="Loading"><img src="logo.png" alt="Glades Epoxy Co."><div class="ln"><b></b></div></div>
 <nav class="top">
@@ -499,6 +513,7 @@ html.ldg{overflow:hidden}
       <p class="label lime">UNDER THE SHINE</p>
       <h2 class="big">Engineered <br>to last.</h2>
       <p class="lede">A great floor is built in layers. Scroll to peel yours apart, from the top down.</p>
+      <div class="ldots" id="ldots" aria-hidden="true"></div>
       <ul class="lays" id="lays"></ul>
       <p class="ex">Example system. Layers vary by finish and by your floor.</p>
     </div>
@@ -811,6 +826,8 @@ LAYERS.forEach(function(L,i){
   var li=document.createElement('li');li.innerHTML='<b>'+(LAYERS.length-i)+'</b><div><h3>'+L.n+'</h3><p>'+L.d+'</p></div>';
   li.addEventListener('click',function(){jumpTo(i);});laysEl.insertBefore(li,laysEl.firstChild);liEls.push(li);
 });
+var dotsEl=document.getElementById('ldots'),dotEls=[];
+for(var k=LAYERS.length-1;k>=0;k--){(function(i){var d=document.createElement('button');d.type='button';d.tabIndex=-1;d.addEventListener('click',function(){jumpTo(i);});dotsEl.appendChild(d);dotEls[i]=d;})(k);}
 function nz(x,y){var s=Math.sin(x*127.1+y*311.7)*43758.5453;return s-Math.floor(s);}
 function vnoise(x,y){var ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy;fx=fx*fx*(3-2*fx);fy=fy*fy*(3-2*fy);
   return (nz(ix,iy)*(1-fx)+nz(ix+1,iy)*fx)*(1-fy)+(nz(ix,iy+1)*(1-fx)+nz(ix+1,iy+1)*fx)*fy;}
@@ -865,7 +882,8 @@ function updateLayers(){
   });
   var show=p>.02?active:LAYERS.length-1;
   liEls.forEach(function(li,i){li.classList.toggle('on',i===show);});
-  var s=window.innerWidth<860?(window.innerHeight<700?.3:.44):Math.min(1,window.innerWidth/1100+.15);
+  dotEls.forEach(function(d,i){d.classList.toggle('on',i===show);});
+  var s=window.innerWidth<860?(window.innerHeight<700?.34:(window.innerHeight<780?.42:.52)):Math.min(1,window.innerWidth/1100+.15);
   world.style.setProperty('--s',s.toFixed(2));
 }
 window.addEventListener('scroll',updateLayers,{passive:true});window.addEventListener('resize',updateLayers);
@@ -932,6 +950,4 @@ function arm(){clearInterval(tm);if(window.matchMedia('(prefers-reduced-motion:r
 ts.forEach(function(t){t.addEventListener('click',function(){go(+t.dataset.i);arm()})});arm();})();
 })();
 </script>
-
-</body>
-</html>
+</body></html>

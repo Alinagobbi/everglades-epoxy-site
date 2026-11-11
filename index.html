@@ -436,6 +436,7 @@ html.ldg{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.lays li.on{animation:none}}
 
 @media(min-width:861px){
+  .stage{transform:translateY(clamp(40px,7vh,80px))}
   .lays li.on{animation:rollup .55s cubic-bezier(.2,.7,.2,1) both}
   .lays li.on h3{font-size:15px;color:var(--bone)}
   .lays li.on p{font-size:15px;line-height:1.55;margin-top:6px}
@@ -444,7 +445,7 @@ html.ldg{overflow:hidden}
 @media(min-width:861px) and (max-height:800px){
   .ls{padding-top:56px}.ls .txt{gap:12px}.ls h2{font-size:clamp(34px,4.4vw,56px)}
   .ls .lede,.ls .ex{display:none}.lays li{padding:8px 0}
-  .stage{height:min(74vh,560px)}
+  .stage{height:min(74vh,560px);transform:translateY(96px)}
 }
 </style></head><body>
 
@@ -895,7 +896,7 @@ function updateLayers(){
   var show=p>.02?active:LAYERS.length-1;
   liEls.forEach(function(li,i){li.classList.toggle('on',i===show);});
   dotEls.forEach(function(d,i){d.classList.toggle('on',i===show);});
-  var s=window.innerWidth<860?(window.innerHeight<700?.34:(window.innerHeight<780?.42:.52)):Math.min(1,window.innerWidth/1100+.15,window.innerHeight/820);
+  var s=window.innerWidth<860?(window.innerHeight<700?.34:(window.innerHeight<780?.42:.52)):Math.min(1,window.innerWidth/1100+.15,window.innerHeight/900);
   world.style.setProperty('--s',s.toFixed(2));
 }
 window.addEventListener('scroll',updateLayers,{passive:true});window.addEventListener('resize',updateLayers);
